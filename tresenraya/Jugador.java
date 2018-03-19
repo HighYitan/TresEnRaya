@@ -15,6 +15,6 @@ public class Jugador {
         this.nombre = nombre;
     }
     public void movimiento() {
-        // TODO implement me    
+        
     }
 }
