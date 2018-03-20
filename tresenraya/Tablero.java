@@ -123,7 +123,7 @@ public class Tablero {
             return true;
         } 
         else {
-            System.out.println("Esta casilla está ocupada");
+            System.out.println("Esta casilla está ocupada amigo");
             return false;
         }
     }
