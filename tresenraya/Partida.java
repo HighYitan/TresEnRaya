@@ -63,12 +63,12 @@ public class Partida {
                 else {
                     ganado = true;
                     this.sesion.getRanking().upgPartidasJugadas();
-                    System.out.println("Has perdido...");
+                    System.out.println("Humillado.");
                     break;
                 }
             } 
             else if (getJugador(1) instanceof IA0) {
-                System.out.println("Movimiento de CPU");
+                System.out.println("Movimiento de la CPU");
                 tablero.move(((IA0) getJugador(1)).movimiento(tablero));
             }
             tablero.mostrar();
@@ -98,10 +98,10 @@ public class Partida {
                 if (turno == true) {
                     this.sesion.getRanking().upgGanadas();
                     this.sesion.getRanking().upgPartidasJugadas();
-                    System.out.println("¡¡Ha ganado " + getJugador(0).getNombre() + "!!");
+                    System.out.println("Ha ganado " + getJugador(0).getNombre());
                 } else {
                     this.sesion.getRanking().upgPartidasJugadas();
-                    System.out.println("Has perdido...");
+                    System.out.println("Humillado.");
                 }
                 ganado = true;
             }
