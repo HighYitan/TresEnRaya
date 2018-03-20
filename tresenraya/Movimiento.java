@@ -9,7 +9,7 @@ public class Movimiento {
     private int col; 
  
     public Movimiento(){
-        super();
+        
     }
     public Jugador getJugador(){
         return jugador;

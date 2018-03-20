@@ -2,42 +2,53 @@ package tresenraya ;
 
 
 public class Ranking {
-    
     private int partidasJugadas;    
-    private int ganadasHumano;    
-    private int empates; 
+    private int ganadas;    
+    private int empates;
+    private Sesion sesion;
  
     public Ranking(){
-        super();
-    }
-    
-    public void mostrar() {
-        // TODO implement me    
-    }
-    
-    public void ganar(Jugador parameter) {
-        // TODO implement me    
-    }
-    
-    public void empatar() {
-        // TODO implement me    
-    }
-    public int getPartidasJugadas(){
-        return partidasJugadas;
-    }
-    public int getGanadasHumano(){
-        return ganadasHumano;
+        partidasJugadas = 0;
+        ganadas = 0;
+        empates = 0;
     }
     public int getEmpates(){
         return empates;
     }
-    public void setPartidasJugadas(int partidasJugadas){
-        this.partidasJugadas = partidasJugadas;
+    public int getGanadas(){
+        return ganadas;
     }
-    public void setGanadasHumano(int ganadasHumano){
-        this.ganadasHumano = ganadasHumano;
+    public int getPartidasJugadas(){
+        return partidasJugadas;
+    }
+    public Sesion getSesion() {
+        return sesion;
     }
     public void setEmpates(int empates){
         this.empates = empates;
+    }
+    public void setGanadas(int ganadas){
+        this.ganadas = ganadas;
+    }
+    public void setPartidasJugadas(int partidasJugadas){
+        this.partidasJugadas = partidasJugadas;
+    }
+    public void setSesion(Sesion sesion) {
+        this.sesion = sesion;
+    }
+    public void mostrar() {
+        System.out.println("Partidas jugadas: " + partidasJugadas + "  ");
+        System.out.println("Partidas ganadas: " + ganadas + "  ");
+        System.out.println("Partidas empatadas: " + empates + "  ");
+        this.sesion.menuVolver();   
+    }
+    public void upgPartidasJugadas() {
+        this.partidasJugadas++;
+    }
+    public void upgGanadas() {
+        this.ganadas++;
+    }
+    public void upgEmpates() {
+        this.empates++;
     }
 }
