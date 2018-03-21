@@ -17,42 +17,45 @@ public class Tablero {
     public Partida getPartida() {
         return partida;
     }
+    public void setCasillas(){
+        this.casillas = casillas;
+    }
     public void setPartida(Partida partida) {
         this.partida = partida;
     }
     
-    public boolean comprobarColum() {
+    public boolean comprobarColumnas() {
 
-        int[] fichas = new int[3];
+        int[] ficha = new int[3];
 
         for (int i = 0; i < casillas[0].length; i++) {
             for (int j = 0; j < casillas.length; j++) {
-                fichas[j] = casillas[j][i];
+                ficha[j] = casillas[j][i];
             }
-            if (comprobarFichas(fichas)) {
+            if (comprobarFicha(ficha)) {
                 return true;
             }
         }
         return false;
     }
-    public boolean comprobarDiag() {
-        int[] fichas = new int[3];
+    public boolean comprobarDiagonal() {
+        int[] ficha = new int[3];
 
         for (int i = 0; i < casillas.length; i++) {
-            fichas[i] = casillas[i][i];
+            ficha[i] = casillas[i][i];
         }
-        if (comprobarFichas(fichas)) {
+        if (comprobarFicha(ficha)) {
             return true;
         }
 
         for (int i = 2, j = 0; j < casillas.length; i--, j++) {
-            fichas[j] = casillas[i][j];
+            ficha[j] = casillas[i][j];
         }
-        return comprobarFichas(fichas);
+        return comprobarFicha(ficha);
     }
-    public boolean comprobarFichas(int[] fichas) {
-        for (int i = 1; i < fichas.length; i++) {
-            if (fichas[i - 1] != fichas[i] || fichas[i - 1] == 0) {
+    public boolean comprobarFicha(int[] ficha) {
+        for (int i = 1; i < ficha.length; i++) {
+            if (ficha[i - 1] != ficha[i] || ficha[i - 1] == 0) {
                 return false;
             }
         }
@@ -60,20 +63,20 @@ public class Tablero {
     }
     public boolean comprobarFilas() {
 
-        int[] fichas = new int[3];
+        int[] ficha = new int[3];
 
         for (int i = 0; i < casillas.length; i++) {
             for (int j = 0; j < casillas[i].length; j++) {
-                fichas[j] = casillas[i][j];
+                ficha[j] = casillas[i][j];
             }
-            if (comprobarFichas(fichas)) {
+            if (comprobarFicha(ficha)) {
                 return true;
             }
         }
         return false;
     }
     public boolean comprobarGanador() {
-        return (comprobarFilas() || comprobarColum() || comprobarDiag());
+        return (comprobarFilas() || comprobarColumnas() || comprobarDiagonal());
     }
     public boolean comprobarLleno() {
         for (int i = 0; i < casillas.length; i++) {
@@ -85,37 +88,39 @@ public class Tablero {
         }
         return true;
     }
-    public int impFicha(boolean ficha) {
+    public int impresionFicha(boolean ficha) {
         if (ficha) {
             return 1;
         } else {
             return -1;
         }
     }
-    public void move(Movimiento movi) {
-        if (validarMovimiento(movi)) {
-            casillas[movi.getRow()][movi.getCol()] = impFicha(movi.getBlancas());
+    public void mover(Movimiento mov) {
+        if (validarMovimiento(mov)) {
+            casillas[mov.getRow()][mov.getCol()] = impresionFicha(mov.getBlancas());
         }
     }
-    public void mostrar() {
-        System.out.println(" _________");
+    public void mostrarTablero() {
+        System.out.println(" ___________");
         for (int i = 0; i < casillas.length; i++) {
             System.out.print("|");
             for (int j = 0; j < casillas[i].length; j++) {
                 if (casillas[i][j] == 0) {
-                    System.out.print(" ~ ");
+                    System.out.print(" ~ |");
                 } 
                 else if (casillas[i][j] == 1) {
-                    System.out.print(" O ");
+                    System.out.print(" O |");
                 } 
                 else if (casillas[i][j] == -1) {
-                    System.out.print(" X ");
+                    System.out.print(" X |");
                 }
+                //else{
+                   // comprobarPeso(casillas[i]);
+                // }
             }
-            System.out.print("|");
             System.out.println();
         }
-        System.out.println(" ¯¯¯¯¯¯¯¯¯");
+        System.out.println(" ¯¯¯¯¯¯¯¯¯¯¯");
         System.out.println();
     }
     public boolean validarCasillaVacia(int row, int col) {

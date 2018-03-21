@@ -3,20 +3,20 @@ package tresenraya ;
 
 public class Ranking {
     private int partidasJugadas;    
-    private int ganadas;    
+    private int ganadasPersona;    
     private int empates;
     private Sesion sesion;
  
     public Ranking(){
         partidasJugadas = 0;
-        ganadas = 0;
+        ganadasPersona = 0;
         empates = 0;
     }
     public int getEmpates(){
         return empates;
     }
     public int getGanadas(){
-        return ganadas;
+        return ganadasPersona;
     }
     public int getPartidasJugadas(){
         return partidasJugadas;
@@ -28,7 +28,7 @@ public class Ranking {
         this.empates = empates;
     }
     public void setGanadas(int ganadas){
-        this.ganadas = ganadas;
+        this.ganadasPersona = ganadas;
     }
     public void setPartidasJugadas(int partidasJugadas){
         this.partidasJugadas = partidasJugadas;
@@ -38,17 +38,17 @@ public class Ranking {
     }
     public void mostrar() {
         System.out.println("Partidas jugadas: " + partidasJugadas + "  ");
-        System.out.println("Partidas ganadas: " + ganadas + "  ");
+        System.out.println("Partidas ganadas: " + ganadasPersona + "  ");
         System.out.println("Partidas empatadas: " + empates + "  ");
-        this.sesion.menuVolver();   
+        this.sesion.menuRetorno();   
     }
-    public void upgPartidasJugadas() {
+    public void sumarPartidasJugadas() {
         this.partidasJugadas++;
     }
-    public void upgGanadas() {
-        this.ganadas++;
+    public void sumarGanadas() {
+        this.ganadasPersona++;
     }
-    public void upgEmpates() {
+    public void sumarEmpates() {
         this.empates++;
     }
 }

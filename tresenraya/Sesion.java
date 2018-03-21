@@ -34,7 +34,7 @@ public class Sesion {
     public void setJugadores(ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
     }
-    public Jugador crearHumano(String nombre) {
+    public Jugador crearPersona(String nombre) {
         Jugador jugador = new Jugador();
         jugador.setNombre(nombre);
         jugador.setSesion(this);
@@ -52,7 +52,7 @@ public class Sesion {
         jugador2.setPartida(partida);
         partida.setSesion(this);
         partidas.add(partida);
-        partida.setTurno(sorteoTurno());
+        partida.setTurno(TurnoSorteado());
         return partida;
     }
     public void crearRanking() {
@@ -60,15 +60,15 @@ public class Sesion {
         this.ranking = ranking;
         ranking.setSesion(this);
     }
-    public void empezar() {
+    public void empezarPartida() {
         System.out.println();
         Scanner nom = new Scanner(System.in);
         System.out.println("Nombre:");
-        Partida partida = crearPartida(crearHumano(nom.next()), crearIA());
+        Partida partida = crearPartida(crearPersona(nom.next()), crearIA());
         System.out.println();
         partida.jugar();
         System.out.println("FIN...");
-        menuVolver();
+        menuRetorno();
 
     }
     public static void iniciar() {
@@ -77,7 +77,7 @@ public class Sesion {
         sesion.menu();
     }
     public void menu() {
-        ventMenu();
+        presentacionMenu();
         Scanner num = new Scanner(System.in);
         System.out.println();
         System.out.println("Elige una opción:");
@@ -95,7 +95,7 @@ public class Sesion {
                     case 1:
                         System.out.println();
                         System.out.println("QUE COMIENCEN LOS JUEGOS");
-                        empezar();
+                        empezarPartida();
                         break;
                     case 2:
                         System.out.println();
@@ -109,7 +109,7 @@ public class Sesion {
             }
         } while (!menu); 
     }
-    public void menuVolver() {
+    public void menuRetorno() {
         System.out.println();
         System.out.println("1. Volver al menú");
         System.out.println("2. Salir de la sesión");
@@ -137,13 +137,13 @@ public class Sesion {
 
     }
     //Genera un número entre el 0 y el 1
-    public boolean sorteoTurno() {
+    public boolean TurnoSorteado() {
         return (Math.random() < 0.5);
     }
     public void mostrarRanking() {
         ranking.mostrar();
     }
-    public void ventMenu() {
+    public void presentacionMenu() {
         System.out.println();
         System.out.println("1. Empezar una partida");
         System.out.println("2. Mostrar el Ranking");
