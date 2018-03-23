@@ -17,7 +17,7 @@ public class Tablero {
     public Partida getPartida() {
         return partida;
     }
-    public void setCasillas(){
+    public void setCasillas(int casillas[][]){
         this.casillas = casillas;
     }
     public void setPartida(Partida partida) {

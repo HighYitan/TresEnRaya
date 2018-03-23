@@ -29,6 +29,6 @@ public class IA1 extends IA0 {
         return null;
     }
     public void asignarPeso(int [][] peso){
-        
+        peso = Tablero.setCasillas(peso);
     }
 }

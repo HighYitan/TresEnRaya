@@ -41,10 +41,15 @@ public class Sesion {
         jugadores.add(jugador);
         return jugador;
     }
-    public IA0 crearIA() {
-        IA0 ia = new IA0();
-        ia.setSesion(this);
-        return ia;
+    public IA0 crearIA0() {
+        IA0 ia0 = new IA0();
+        ia0.setSesion(this);
+        return ia0;
+    }
+    public IA1 crearIA1() {
+        IA1 ia1 = new IA1();
+        ia1.setSesion(this);
+        return ia1;
     }
     public Partida crearPartida(Jugador jugador1, Jugador jugador2) {
         Partida partida = new Partida(jugador1, jugador2);
@@ -62,14 +67,42 @@ public class Sesion {
     }
     public void empezarPartida() {
         System.out.println();
-        Scanner nom = new Scanner(System.in);
-        System.out.println("Nombre:");
-        Partida partida = crearPartida(crearPersona(nom.next()), crearIA());
-        System.out.println();
-        partida.jugar();
-        System.out.println("FIN...");
-        menuRetorno();
-
+        System.out.println("1. Luchar contra IA0");
+        System.out.println("2. Luchar contra IA1");
+        Scanner num = new Scanner(System.in);
+        System.out.println("Elige una opción:");
+        boolean menu = false;
+        int val;
+        do {
+            val = num.nextInt();
+            if (val != 1 && val != 2) {
+                System.out.println("Opción inválida");
+            } else {
+                menu = true;
+                switch (val) {
+                    case 1:
+                        System.out.println();
+                        Scanner nombre = new Scanner(System.in);
+                        System.out.println("Nombre:");
+                        Partida partida = crearPartida(crearPersona(nombre.next()), crearIA0());
+                        System.out.println();
+                        partida.jugar();
+                        System.out.println("FIN...");
+                        menuRetorno();
+                        break;
+                    case 2:
+                        System.out.println();
+                        Scanner nombre2 = new Scanner(System.in);
+                        System.out.println("Nombre:");
+                        partida = crearPartida(crearPersona(nombre2.next()), crearIA1());
+                        System.out.println();
+                        partida.jugar();
+                        System.out.println("FIN...");
+                        menuRetorno();
+                        break;
+                }
+            }
+        } while (!menu);
     }
     public static void iniciar() {
         Sesion sesion = new Sesion();
@@ -120,7 +153,7 @@ public class Sesion {
         do {
             val = num.nextInt();
             if (val != 1 && val != 2) {
-                System.out.println("/!/Introduce un número válido para las opciones/!/");
+                System.out.println("Opción inválida");
             } else {
                 menu = true;
                 switch (val) {
