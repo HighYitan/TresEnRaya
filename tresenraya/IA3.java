@@ -1,8 +1,8 @@
 package tresenraya;
 
-public class IA2 extends IA1 {
+public class IA3 extends IA2 {
 
-    public IA2(){
+    public IA3(){
 
     }      
     @Override
@@ -13,6 +13,9 @@ public class IA2 extends IA1 {
             for (int j = 0; j < casillas[i].length; j++) {
                 if (movimientoGanador(tablero.getCasillas()) != null) {
                     return movimientoGanador(tablero.getCasillas());
+                }
+                else if (evitarPerder(tablero.getCasillas()) != null) {
+                    return evitarPerder(tablero.getCasillas());
                 }
                 else {
                     if (peso[i][j] == buscarPeso(tablero)) {
@@ -30,120 +33,112 @@ public class IA2 extends IA1 {
         }
         return null;
     }
-   
-    public Movimiento movimientoGanador(int[][] casillas) {
+    public Movimiento evitarPerder(int[][] casillas) {
         int[] coordenadas = new int[2];
-        Movimiento jugada = new Movimiento();
-        jugada.setBlancas(false);
-        jugada.setJugador(this);
-        if (comprobarColumna(casillas)[0] != -1) {
-            coordenadas = comprobarColumna(casillas);
-            jugada.setRow(coordenadas[0]);
-            jugada.setCol(coordenadas[1]);
-            return jugada;
-
-        } else if (comprobarFila(casillas)[0] != -1) {
-            coordenadas = comprobarFila(casillas);
-            jugada.setRow(coordenadas[0]);
-            jugada.setCol(coordenadas[1]);
-            return jugada;
-        } else if (comprobarDiagonal(casillas)[0] != -1) {
-            coordenadas = comprobarDiagonal(casillas);
-            jugada.setRow(coordenadas[0]);
-            jugada.setCol(coordenadas[1]);
-            return jugada;
+        Movimiento mov = new Movimiento();
+        mov.setBlancas(false);
+        mov.setJugador(this);
+        if (evitarPerderColumna(casillas)[0] != -1) {
+            coordenadas = evitarPerderColumna(casillas);
+            mov.setRow(coordenadas[0]);
+            mov.setCol(coordenadas[1]);
+            return mov;
+        } 
+        else if (evitarPerderFila(casillas)[0] != -1) {
+            coordenadas = evitarPerderFila(casillas);
+            mov.setRow(coordenadas[0]);
+            mov.setCol(coordenadas[1]);
+            return mov;
+        } 
+        else if (evitarPerderDiagonal(casillas)[0] != -1) {
+            coordenadas = evitarPerderDiagonal(casillas);
+            mov.setRow(coordenadas[0]);
+            mov.setCol(coordenadas[1]);
+            return mov;
         } 
         else {
             return null;
         }
-
     }
-    public int[] comprobarFila(int[][] casillas) {
+    public int[] evitarPerderFila(int[][] casillas) {
         int[] ficha = new int[3];
         int[] coordenadas = new int[]{-1, -1};
-
         for (int i = 0; i < casillas.length; i++) {
             for (int j = 0; j < casillas[i].length; j++) {
                 ficha[j] = casillas[i][j];
             }
-            if (comprobarFicha(ficha) != -1) {
+            if (comprobarFichaPerdedora(ficha) != -1) {
                 coordenadas[0] = i;
-                coordenadas[1] = comprobarFicha(ficha);
+                coordenadas[1] = comprobarFichaPerdedora(ficha);
             }
         }
         return coordenadas;
     }
-    public int[] comprobarColumna(int[][] casillas) {
-
+    public int[] evitarPerderColumna(int[][] casillas) {
         int[] ficha = new int[3];
         int[] coordenadas = new int[]{-1, -1};
         for (int i = 0; i < casillas[0].length; i++) {
             for (int j = 0; j < casillas.length; j++) {
                 ficha[j] = casillas[j][i];
             }
-            if (comprobarFicha(ficha) != -1) {
-                coordenadas[0] = comprobarFicha(ficha);
+            if (comprobarFichaPerdedora(ficha) != -1) {
+                coordenadas[0] = comprobarFichaPerdedora(ficha);
                 coordenadas[1] = i;
             }
         }
-
         return coordenadas;
     }
-    public int[] comprobarDiagonal(int[][] casillas) {
+    public int[] evitarPerderDiagonal(int[][] casillas) {
         int[] ficha = new int[3];
         int[] coordenadas = new int[]{-1, -1};
 
         for (int i = 0; i < casillas.length; i++) {
             ficha[i] = casillas[i][i];
         }
-        if (comprobarFicha(ficha) != -1) {
-            coordenadas[0] = comprobarFicha(ficha);
-            coordenadas[1] = comprobarFicha(ficha);
+        if (comprobarFichaPerdedora(ficha) != -1) {
+            coordenadas[0] = comprobarFichaPerdedora(ficha);
+            coordenadas[1] = comprobarFichaPerdedora(ficha);
             return coordenadas;
         }
         for (int i = 2, j = 0; j < casillas.length; i--, j++) {
             ficha[j] = casillas[i][j];
         }
-
-        if (comprobarFicha(ficha) != -1) {
-            if (comprobarFicha(ficha) == 1) {
+        if (comprobarFichaPerdedora(ficha) != -1) {
+            if (comprobarFichaPerdedora(ficha) == 1) {
                 coordenadas[0] = 1;
-                coordenadas[1] = comprobarFicha(ficha);
-            } 
-            else if (comprobarFicha(ficha) == 0) {
+                coordenadas[1] = comprobarFichaPerdedora(ficha);
+            } else if (comprobarFichaPerdedora(ficha) == 0) {
                 coordenadas[0] = 2;
-                coordenadas[1] = comprobarFicha(ficha);
+                coordenadas[1] = comprobarFichaPerdedora(ficha);
 
-            } 
-            else {
+            } else {
                 coordenadas[0] = 0;
-                coordenadas[1] = comprobarFicha(ficha);
+                coordenadas[1] = comprobarFichaPerdedora(ficha);
             }
         }
         return coordenadas;
-
     }
-    public int comprobarFicha(int[] ficha) {
+    public int comprobarFichaPerdedora(int[] ficha) {
         int contadorIA = 0;
 
         for (int i = 0; i < ficha.length; i++) {
-            if (ficha[i] == -1) {
+            if (ficha[i] == 1) {
                 contadorIA++;
             }
         }
 
         if (contadorIA == 2) {
             for (int i = 0; i < ficha.length; i++) {
-                if (ficha[i] != -1) {
+                if (ficha[i] != 1) {
                     if (ficha[i] == 0) {
                         return i;
-                    } 
-                    else {
+                    } else {
                         return -1;
                     }
                 }
             }
         }
+
         return -1;
     }
 }

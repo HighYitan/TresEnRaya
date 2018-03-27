@@ -27,6 +27,8 @@ public class IA1 extends IA0 {
         return null;
     }
     public int buscarPeso(Tablero tablero) {
+        int x = 0;
+        int y = 0;
         peso = new int[][]{{3,2,3}, {2,4,2}, {3,2,3}};    
         int[][] casillas = tablero.getCasillas();
         int pesoMinimo;
@@ -34,7 +36,9 @@ public class IA1 extends IA0 {
         for (int i = 0; i < casillas.length; i++) {
             for (int j = 0; j < casillas[i].length; j++) {
                 if (peso[i][j] >= pesoMinimo && tablero.getCasilla(i, j) == 0) {
-                    pesoMinimo = peso[i][j];   
+                    x = i;
+                    y = j;
+                    pesoMinimo = peso[x][y];   
                 }
             }
         }

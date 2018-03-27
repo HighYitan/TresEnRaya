@@ -51,6 +51,21 @@ public class Sesion {
         ia1.setSesion(this);
         return ia1;
     }
+    public IA2 crearIA2() {
+        IA2 ia2 = new IA2();
+        ia2.setSesion(this);
+        return ia2;
+    }
+    public IA3 crearIA3() {
+        IA3 ia3 = new IA3();
+        ia3.setSesion(this);
+        return ia3;
+    }
+    public IA4 crearIA4() {
+        IA4 ia4 = new IA4();
+        ia4.setSesion(this);
+        return ia4;
+    }
     public Partida crearPartida(Jugador jugador1, Jugador jugador2) {
         Partida partida = new Partida(jugador1, jugador2);
         jugador1.setPartida(partida);
@@ -69,13 +84,16 @@ public class Sesion {
         System.out.println();
         System.out.println("1. Luchar contra IA0");
         System.out.println("2. Luchar contra IA1");
+        System.out.println("3. Luchar contra IA2");
+        System.out.println("4. Luchar contra IA3");
+        System.out.println("5. Luchar contra IA4");
         Scanner num = new Scanner(System.in);
         System.out.println("Elige una opción:");
         boolean menu = false;
         int val;
         do {
             val = num.nextInt();
-            if (val != 1 && val != 2) {
+            if (val != 1 && val != 2 && val != 3 && val != 4 && val != 5) {
                 System.out.println("Opción inválida");
             } else {
                 menu = true;
@@ -92,9 +110,39 @@ public class Sesion {
                         break;
                     case 2:
                         System.out.println();
+                        Scanner nombre1 = new Scanner(System.in);
+                        System.out.println("Nombre:");
+                        partida = crearPartida(crearPersona(nombre1.next()), crearIA1());
+                        System.out.println();
+                        partida.jugar();
+                        System.out.println("FIN...");
+                        menuRetorno();
+                        break;
+                    case 3:
+                        System.out.println();
                         Scanner nombre2 = new Scanner(System.in);
                         System.out.println("Nombre:");
-                        partida = crearPartida(crearPersona(nombre2.next()), crearIA1());
+                        partida = crearPartida(crearPersona(nombre2.next()), crearIA2());
+                        System.out.println();
+                        partida.jugar();
+                        System.out.println("FIN...");
+                        menuRetorno();
+                        break;
+                    case 4:
+                        System.out.println();
+                        Scanner nombre3 = new Scanner(System.in);
+                        System.out.println("Nombre:");
+                        partida = crearPartida(crearPersona(nombre3.next()), crearIA3());
+                        System.out.println();
+                        partida.jugar();
+                        System.out.println("FIN...");
+                        menuRetorno();
+                        break;
+                    case 5:
+                        System.out.println();
+                        Scanner nombre4 = new Scanner(System.in);
+                        System.out.println("Nombre:");
+                        partida = crearPartida(crearPersona(nombre4.next()), crearIA3());
                         System.out.println();
                         partida.jugar();
                         System.out.println("FIN...");

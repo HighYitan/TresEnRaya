@@ -114,9 +114,6 @@ public class Tablero {
                 else if (casillas[i][j] == -1) {
                     System.out.print(" X |");
                 }
-                //else{
-                   // comprobarPeso(casillas[i]);
-                // }
             }
             System.out.println();
         }

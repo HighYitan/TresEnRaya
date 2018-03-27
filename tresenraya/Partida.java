@@ -59,6 +59,9 @@ public class Partida {
                 System.out.println();
                 if (tablero.validarMovimiento(getJugador(0).movimiento(row, col))) {
                     tablero.mover(getJugador(0).movimiento(row, col));
+                    if (getJugador(1) instanceof IA4) {
+                        ((IA4) getJugador(1)).pesoRecalculado(getJugador(0).movimiento(row, col));
+                    }
                 } 
                 else {
                     ganado = true;
@@ -86,7 +89,8 @@ public class Partida {
                         System.out.println("Perdiste");
                         break;
                     }
-                } else {
+                } 
+                else {
                     System.out.println("Hemos empatado, otra vez será");
                     this.sesion.getRanking().sumarPartidasJugadas();
                     this.sesion.getRanking().sumarEmpates();

@@ -39,6 +39,7 @@ public class Ranking {
     public void mostrar() {
         System.out.println("Partidas jugadas: " + partidasJugadas + "  ");
         System.out.println("Partidas ganadas: " + ganadasPersona + "  ");
+        System.out.println("*Partidas perdidas: " + (partidasJugadas - empates - ganadasPersona) + " ");
         System.out.println("Partidas empatadas: " + empates + "  ");
         this.sesion.menuRetorno();   
     }
